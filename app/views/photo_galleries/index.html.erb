@@ -1,0 +1,35 @@
+<!--Listing gallery-->
+
+<h1>Listing Photo Galleries</h1>
+
+<table border="1" bordercolor="#E6E6FA">
+			<tr style="text-align:centre;">
+				<th style="width: 150px;">Title</th>
+				<th style="width: 150px;">Description</th>
+				<th style="width: 150px;">Items</th>
+				<th style="width: 50px;"></th>
+				<th style="width: 50px;"></th>
+				<th style="width: 50px;"></th>
+			</tr>
+
+<% @photo_galleries.each do |photo_gallery| %>
+  <tr>
+    <td><%= photo_gallery.title %></td>
+    <td><%= photo_gallery.description %></td>
+	<td>
+		<ul>
+		<%photo_gallery.photo_items.each do |item|%>
+			<li><%= item.title%></li>
+		<%end%>
+		</ul>
+	</td>
+    <td><%= link_to 'Show', photo_gallery %></td>
+    <td><%= link_to 'Edit', edit_photo_gallery_path(photo_gallery) %></td>
+    <td><%= link_to 'Destroy', photo_gallery, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Photo gallery', new_photo_gallery_path %>

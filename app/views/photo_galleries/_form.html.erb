@@ -1,0 +1,44 @@
+<!--Form to create a gallery-->
+
+<%= nested_form_for @photo_gallery do |photo_gallery| %>
+  <% if @photo_gallery.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@photo_gallery.errors.count, "error") %> prohibited this photo_gallery from being saved:</h2>
+
+      <ul>
+      <% @photo_gallery.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<!--Gallery fields goes here -->
+  <div class="field">
+    <%= photo_gallery.label :title %><br />
+    <%= photo_gallery.text_field :title %>
+  </div>
+  <div class="field">
+    <%= photo_gallery.label :description %><br />
+    <%= photo_gallery.text_area :description %>
+  </div>
+ 
+<!--Nested for for item goes here -->
+  
+	<h3>Add Existing Items</h3>
+	<ul>
+	<%for item in PhotoItem.all%>
+		<div class="field">
+	  	  	<li>
+	  	  		<%= label_tag item.title%> 
+	  	  		<%= check_box_tag "item_ids[]", item.id%>
+	  	  	</li>
+	 	</div>
+ 	<% end %>
+ 	<h3>OR</h3>
+ 	<%= link_to "Create a new Item", new_photo_item_path%>
+ 	</ul>
+  <div class="actions">
+    <%= photo_gallery.submit %>
+  </div>
+<% end %>

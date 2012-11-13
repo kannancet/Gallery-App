@@ -1,0 +1,25 @@
+<h1>Listing Photo Items</h1>
+
+<table border="1" bordercolor="#E6E6FA">
+  <tr>
+    <th style="width: 150px;">Title</th>
+    <th style="width: 150px;">Image</th>
+    <th style="width: 50px;"></th>
+    <th style="width: 50px;"></th>
+    <th style="width: 50px;"></th>
+  </tr>
+
+<% @photo_items.each do |photo_item| %>
+  <tr>
+    <td><%= photo_item.title %></td>
+    <td><%= photo_item.image %></td>
+    <td><%= link_to 'Show', photo_item %></td>
+    <td><%= link_to 'Edit', edit_photo_item_path(photo_item) %></td>
+    <td><%= link_to 'Destroy', photo_item, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Photo item', new_photo_item_path %>
