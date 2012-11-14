@@ -69,7 +69,8 @@ class PhotoGalleriesController < ApplicationController
 =end
   def update
     @photo_gallery = PhotoGallery.find(params[:id])
-
+    PhotoGalleriesPhotoItem.delete_all("photo_gallery_id = #{@photo_gallery.id}")
+    @photo_gallery.photo_items.push(PhotoItem.where(:id => params[:item_ids]))
     respond_to do |format|
       if @photo_gallery.update_attributes(params[:photo_gallery])
         format.html { redirect_to @photo_gallery, :notice => 'Photo gallery was successfully updated.' }

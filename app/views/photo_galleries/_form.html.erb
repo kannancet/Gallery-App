@@ -31,7 +31,8 @@
 		<div class="field">
 	  	  	<li>
 	  	  		<%= label_tag item.title%> 
-	  	  		<%= check_box_tag "item_ids[]", item.id%>
+	  	  		<%checked = @photo_gallery.photo_items.collect(&:id).include?(item.id)%>
+	  	  		<%= check_box_tag "item_ids[]", item.id, checked%>
 	  	  	</li>
 	 	</div>
  	<% end %>
